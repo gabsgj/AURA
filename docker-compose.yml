@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    env_file: .env
+    ports: ["5000:5000"]
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    environment:
+      - VITE_API_ORIGIN=http://localhost:5000
+      - VITE_DEMO_MODE=false
+    ports: ["5173:80"]
+    depends_on: [backend]
+    restart: unless-stopped

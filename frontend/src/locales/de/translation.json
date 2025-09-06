@@ -1,0 +1,94 @@
+{
+  "common": {
+    "loading": "Wird geladen...",
+    "error": "Ein Fehler ist aufgetreten",
+    "retry": "Wiederholen",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "close": "Schließen"
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "signOut": "Abmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "forgotPassword": "Passwort vergessen?",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits ein Konto?"
+  },
+  "navigation": {
+    "home": "Startseite",
+    "send": "Geld senden",
+    "receive": "Empfangen",
+    "history": "Verlauf",
+    "wallet": "Geldbörse",
+    "settings": "Einstellungen"
+  },
+  "transaction": {
+    "send": "Geld senden",
+    "receive": "Geld empfangen",
+    "amount": "Betrag",
+    "recipient": "Empfänger",
+    "sender": "Absender",
+    "date": "Datum",
+    "status": "Status",
+    "description": "Beschreibung",
+    "fee": "Gebühr",
+    "total": "Gesamt",
+    "confirm": "Überweisung bestätigen",
+    "success": "Überweisung erfolgreich",
+    "failed": "Überweisung fehlgeschlagen",
+    "pending": "Ausstehend",
+    "completed": "Abgeschlossen",
+    "cancelled": "Abgebrochen"
+  },
+  "wallet": {
+    "balance": "Kontostand",
+    "addFunds": "Geld einzahlen",
+    "withdraw": "Auszahlen",
+    "transactions": "Letzte Transaktionen",
+    "noTransactions": "Keine letzten Transaktionen"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "theme": "Design",
+    "notifications": "Benachrichtigungen",
+    "security": "Sicherheit",
+    "voice": "Spracheinstellungen",
+    "voiceEnabled": "Sprachbenachrichtigungen aktivieren",
+    "voiceVolume": "Lautstärke",
+    "voiceGender": "Stimme",
+    "male": "Männlich",
+    "female": "Weiblich"
+  },
+  "errors": {
+    "required": "Dieses Feld ist erforderlich",
+    "email": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "minLength": "Muss mindestens {{count}} Zeichen lang sein",
+    "maxLength": "Darf nicht länger als {{count}} Zeichen sein",
+    "invalidCredentials": "Ungültige E-Mail oder ungültiges Passwort",
+    "networkError": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
+    "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
+    "insufficientFunds": "Nicht genügend Guthaben",
+    "invalidAmount": "Bitte geben Sie einen gültigen Betrag ein"
+  },
+  "success": {
+    "profileUpdated": "Profil erfolgreich aktualisiert",
+    "passwordChanged": "Passwort erfolgreich geändert",
+    "transactionSent": "Überweisung erfolgreich gesendet",
+    "settingsSaved": "Einstellungen erfolgreich gespeichert"
+  },
+  "voiceAlerts": {
+    "transactionSuccess": "Ihre Überweisung von {{amount}} {{currency}} an {{recipient}} war erfolgreich.",
+    "transactionFailed": "Überweisung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "lowBalance": "Ihr Guthaben ist niedrig. Bitte laden Sie Ihr Guthaben auf.",
+    "fraudAlert": "Verdächtige Aktivität erkannt. Bitte verifizieren Sie Ihre Identität.",
+    "welcome": "Willkommen bei AURA Zahlungen. Wie kann ich Ihnen heute helfen?"
+  }
+}

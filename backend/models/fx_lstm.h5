@@ -1,0 +1,3 @@
+# Placeholder LSTM model file
+# In production, this would be a trained Keras/TensorFlow model
+# For demo purposes, the FX service will use fallback logic

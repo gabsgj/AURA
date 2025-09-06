@@ -1,0 +1,2 @@
+# Placeholder scaler for FX model
+# In production, this would be a trained sklearn scaler

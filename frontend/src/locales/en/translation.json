@@ -1,0 +1,94 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close"
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "navigation": {
+    "home": "Home",
+    "send": "Send Money",
+    "receive": "Receive",
+    "history": "History",
+    "wallet": "Wallet",
+    "settings": "Settings"
+  },
+  "transaction": {
+    "send": "Send Money",
+    "receive": "Receive Money",
+    "amount": "Amount",
+    "recipient": "Recipient",
+    "sender": "Sender",
+    "date": "Date",
+    "status": "Status",
+    "description": "Description",
+    "fee": "Fee",
+    "total": "Total",
+    "confirm": "Confirm Transaction",
+    "success": "Transaction Successful",
+    "failed": "Transaction Failed",
+    "pending": "Pending",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "wallet": {
+    "balance": "Balance",
+    "addFunds": "Add Funds",
+    "withdraw": "Withdraw",
+    "transactions": "Recent Transactions",
+    "noTransactions": "No recent transactions"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "notifications": "Notifications",
+    "security": "Security",
+    "voice": "Voice Settings",
+    "voiceEnabled": "Enable Voice Alerts",
+    "voiceVolume": "Voice Volume",
+    "voiceGender": "Voice Gender",
+    "male": "Male",
+    "female": "Female"
+  },
+  "errors": {
+    "required": "This field is required",
+    "email": "Please enter a valid email",
+    "minLength": "Must be at least {{count}} characters",
+    "maxLength": "Must be at most {{count}} characters",
+    "invalidCredentials": "Invalid email or password",
+    "networkError": "Network error. Please try again.",
+    "sessionExpired": "Your session has expired. Please sign in again.",
+    "insufficientFunds": "Insufficient funds",
+    "invalidAmount": "Please enter a valid amount"
+  },
+  "success": {
+    "profileUpdated": "Profile updated successfully",
+    "passwordChanged": "Password changed successfully",
+    "transactionSent": "Transaction sent successfully",
+    "settingsSaved": "Settings saved successfully"
+  },
+  "voiceAlerts": {
+    "transactionSuccess": "Your transaction of {{amount}} {{currency}} to {{recipient}} was successful.",
+    "transactionFailed": "Transaction failed. Please try again.",
+    "lowBalance": "Your balance is low. Please add funds to your wallet.",
+    "fraudAlert": "Suspicious activity detected. Please verify your identity.",
+    "welcome": "Welcome to AURA payments. How can I help you today?"
+  }
+}

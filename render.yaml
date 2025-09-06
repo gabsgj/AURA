@@ -1,0 +1,38 @@
+services:
+  # Backend Service (Flask API)
+  - type: web
+    name: aura-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: cd backend && pip install -r requirements.txt
+    startCommand: cd backend && python start.py
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0  
+      - key: PORT
+        value: 10000
+      - key: ALLOWED_ORIGINS
+        fromService:
+          type: web
+          name: aura-frontend
+          property: host
+    healthCheckPath: /api/health
+
+  # Frontend Service (React/Vite)
+  - type: web
+    name: aura-frontend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://aura-backend.onrender.com/api/:splat
+      - type: rewrite
+        source: /*
+        destination: /index.html

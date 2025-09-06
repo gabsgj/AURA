@@ -1,0 +1,94 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "retry": "Réessayer",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "close": "Fermer"
+  },
+  "auth": {
+    "signIn": "Se Connecter",
+    "signUp": "S'inscrire",
+    "signOut": "Se Déconnecter",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "hasAccount": "Vous avez déjà un compte ?"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "send": "Envoyer de l'argent",
+    "receive": "Recevoir",
+    "history": "Historique",
+    "wallet": "Portefeuille",
+    "settings": "Paramètres"
+  },
+  "transaction": {
+    "send": "Envoyer de l'argent",
+    "receive": "Recevoir de l'argent",
+    "amount": "Montant",
+    "recipient": "Bénéficiaire",
+    "sender": "Expéditeur",
+    "date": "Date",
+    "status": "Statut",
+    "description": "Description",
+    "fee": "Frais",
+    "total": "Total",
+    "confirm": "Confirmer la transaction",
+    "success": "Transaction réussie",
+    "failed": "Échec de la transaction",
+    "pending": "En attente",
+    "completed": "Terminé",
+    "cancelled": "Annulé"
+  },
+  "wallet": {
+    "balance": "Solde",
+    "addFunds": "Ajouter des fonds",
+    "withdraw": "Retirer",
+    "transactions": "Transactions récentes",
+    "noTransactions": "Aucune transaction récente"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "theme": "Thème",
+    "notifications": "Notifications",
+    "security": "Sécurité",
+    "voice": "Paramètres vocaux",
+    "voiceEnabled": "Activer les alertes vocales",
+    "voiceVolume": "Volume de la voix",
+    "voiceGender": "Genre de la voix",
+    "male": "Masculin",
+    "female": "Féminin"
+  },
+  "errors": {
+    "required": "Ce champ est obligatoire",
+    "email": "Veuillez entrer un e-mail valide",
+    "minLength": "Doit contenir au moins {{count}} caractères",
+    "maxLength": "Ne doit pas dépasser {{count}} caractères",
+    "invalidCredentials": "E-mail ou mot de passe incorrect",
+    "networkError": "Erreur réseau. Veuillez réessayer.",
+    "sessionExpired": "Votre session a expiré. Veuillez vous reconnecter.",
+    "insufficientFunds": "Fonds insuffisants",
+    "invalidAmount": "Veuillez entrer un montant valide"
+  },
+  "success": {
+    "profileUpdated": "Profil mis à jour avec succès",
+    "passwordChanged": "Mot de passe modifié avec succès",
+    "transactionSent": "Transaction envoyée avec succès",
+    "settingsSaved": "Paramètres enregistrés avec succès"
+  },
+  "voiceAlerts": {
+    "transactionSuccess": "Votre transaction de {{amount}} {{currency}} à {{recipient}} a réussi.",
+    "transactionFailed": "Échec de la transaction. Veuillez réessayer.",
+    "lowBalance": "Votre solde est faible. Veuillez recharger votre portefeuille.",
+    "fraudAlert": "Activité suspecte détectée. Veuillez vérifier votre identité.",
+    "welcome": "Bienvenue sur AURA paiements. Comment puis-je vous aider aujourd'hui ?"
+  }
+}
