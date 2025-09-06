@@ -1,15 +1,12 @@
-import os, sys
-os.environ["FLASK_ENV"] = "development"
+import os
+os.environ["FLASK_ENV"] = "testing"
 os.environ["DEMO_MODE"] = "true"
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-if BASE_DIR not in sys.path:
-    sys.path.insert(0, BASE_DIR)
-
-from app import app  # type: ignore
-from auth import generate_token, verify_token  # type: ignore
+from backend.app import create_app
+from backend.auth import generate_token, verify_token
 
 def test_local_jwt_roundtrip():
+    app = create_app('testing')
     with app.app_context():
         token = generate_token("user-1", 1)
         assert verify_token(token) == "user-1"

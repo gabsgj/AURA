@@ -1,10 +1,17 @@
-version: "3.9"
+# DEPRECATED: Docker Compose configuration
+# This file is kept for reference but is not used in the current deployment
+# The client requires non-Docker deployment. See DEPLOYMENT.md for current instructions.
+
+version: '3.8'
 services:
   backend:
     build: ./backend
-    env_file: .env
-    ports: ["5000:5000"]
-    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - ./backend:/app
 
   frontend:
     build: ./frontend

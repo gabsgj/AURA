@@ -12,7 +12,7 @@ import logging
 from datetime import datetime, timedelta
 from functools import wraps
 from flask import request, jsonify, current_app
-from models import User, db
+from backend.models import User, db
 
 logger = logging.getLogger(__name__)
 
