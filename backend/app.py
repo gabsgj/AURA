@@ -1,32 +1,43 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 import os
 import logging
 from pythonjsonlogger import jsonlogger
-from dotenv import load_dotenv
-from models import db
+from backend.config import config
+from backend.models import db
 
-def create_app():
-    load_dotenv()
+def create_app(config_name=None):
+    if config_name is None:
+        config_name = os.getenv('FLASK_ENV', 'development')
+    
     app = Flask(__name__)
-
-    # ---- Config ----
-    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", "change-this-in-prod")
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL", "sqlite:///aura.db")
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    
+    # Load configuration
+    app_config = config.get(config_name, config['default'])
+    app.config.from_object(app_config)
+    
+    # Validate required environment variables
+    try:
+        app_config.validate_required_env_vars()
+    except ValueError as e:
+        app.logger.error(f"Configuration error: {e}")
+        if config_name == 'production':
+            raise
 
     # CORS: tighten to specific origins if provided
-    allowed_origins = [o.strip() for o in os.getenv("ALLOWED_ORIGINS", "").split(",") if o.strip()]
     cors_kwargs = {"supports_credentials": True}
-    if allowed_origins:
-        cors_kwargs["origins"] = allowed_origins
+    if app.config.get('ALLOWED_ORIGINS'):
+        cors_kwargs["origins"] = app.config['ALLOWED_ORIGINS']
     CORS(app, **cors_kwargs)
 
     # Rate limiting: default + specific overrides
-    limiter = Limiter(get_remote_address, app=app, default_limits=["200 per hour", "50 per minute"])
+    limiter = Limiter(
+        get_remote_address, 
+        app=app, 
+        default_limits=[app.config.get('RATELIMIT_DEFAULT', '200 per hour')]
+    )
 
     # DB
     db.init_app(app)
@@ -42,11 +53,12 @@ def create_app():
         if root.hasHandlers():
             root.handlers.clear()
         root.addHandler(handler)
-        root.setLevel(logging.INFO)
+        log_level = getattr(logging, app.config.get('LOG_LEVEL', 'INFO').upper())
+        root.setLevel(log_level)
 
     # Blueprints
-    from api_routes import api_bp as core_bp
-    from api_routes_ai import ai_bp as ai_bp
+    from backend.api_routes import api_bp as core_bp
+    from backend.api_routes_ai import ai_bp as ai_bp
     app.register_blueprint(core_bp, url_prefix="/api")
     app.register_blueprint(ai_bp, url_prefix="/api/ai")
 
@@ -54,7 +66,7 @@ def create_app():
     @app.get("/health")
     @limiter.exempt
     def health():
-        return jsonify(status="ok"), 200
+        return jsonify(status="ok", version="1.0.0"), 200
 
     # Error normalization
     @app.errorhandler(429)
@@ -71,4 +83,5 @@ def create_app():
 app = create_app()
 
 if __name__ == "__main__":
-    app.run(host=os.getenv("HOST", "0.0.0.0"), port=int(os.getenv("PORT", 5000)))
+    from backend.config import Config
+    app.run(host=Config.HOST, port=Config.PORT)

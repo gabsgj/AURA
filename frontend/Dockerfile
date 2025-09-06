@@ -1,4 +1,8 @@
-FROM node:20-alpine AS build
+# DEPRECATED: Docker configuration
+# This Dockerfile is kept for reference but is not used in the current deployment
+# The client requires non-Docker deployment. See DEPLOYMENT.md for current instructions.
+
+FROM node:18-alpine AS build
 WORKDIR /app
 COPY frontend/package*.json ./
 RUN npm ci

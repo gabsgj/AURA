@@ -1,4 +1,6 @@
-# AURA Deployment Guide
+# AURA Deployment Guide (Non-Docker)
+
+**IMPORTANT**: This deployment guide is for non-Docker deployment only. Docker configurations are deprecated per client requirements.
 
 ## Production Setup
 
@@ -72,34 +74,146 @@ DATABASE_URL=your_supabase_postgres_url
 
 #### Local Development:
 ```bash
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+# Windows:
+.venv\Scripts\activate
+# Unix/Mac:
+source .venv/bin/activate
+
 # Backend
 cd backend
 pip install -r requirements.txt
-python app.py
+python -m backend.app
 
-# Frontend
+# Frontend (in new terminal)
 cd frontend
-npm install
+npm ci
 npm run dev
 ```
 
-#### Production (Native):
+#### Production Deployment with systemd + gunicorn + nginx:
+
+##### 1. System Setup
 ```bash
-# Build and prepare
-./start_production.sh
+# Install system dependencies
+sudo apt update
+sudo apt install python3.11 python3.11-venv nginx postgresql-client
 
-# Start backend 
-cd backend
-python app.py
-# Or with gunicorn: gunicorn app:app --bind 0.0.0.0:5000
+# Create application user
+sudo useradd -m -s /bin/bash aura
+sudo mkdir -p /var/www/aura
+sudo chown aura:aura /var/www/aura
+```
 
-# Serve frontend (in another terminal)
-cd frontend
-# Option 1: Python built-in server
-python -m http.server 3000 -d dist
+##### 2. Application Setup
+```bash
+# Clone and setup application
+cd /var/www/aura
+git clone <repository-url> .
+python3.11 -m venv .venv
+source .venv/bin/activate
+cd backend && pip install -r requirements.txt
 
-# Option 2: Using a proper web server like nginx
-# nginx -c /path/to/nginx.conf
+# Build frontend
+cd ../frontend
+npm ci
+npm run build
+```
+
+##### 3. Gunicorn Configuration
+Create `/var/www/aura/gunicorn.conf.py`:
+```python
+bind = "127.0.0.1:8000"
+workers = 4
+worker_class = "sync"
+worker_connections = 1000
+max_requests = 1000
+max_requests_jitter = 100
+timeout = 30
+keepalive = 2
+user = "aura"
+group = "aura"
+```
+
+##### 4. Systemd Service
+Create `/etc/systemd/system/aura-backend.service`:
+```ini
+[Unit]
+Description=AURA Backend
+After=network.target
+
+[Service]
+Type=exec
+User=aura
+Group=aura
+WorkingDirectory=/var/www/aura
+Environment=PATH=/var/www/aura/.venv/bin
+EnvironmentFile=/var/www/aura/.env
+ExecStart=/var/www/aura/.venv/bin/gunicorn -c gunicorn.conf.py backend.app:app
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
+```
+
+##### 5. Nginx Configuration
+Create `/etc/nginx/sites-available/aura`:
+```nginx
+server {
+    listen 80;
+    server_name your-domain.com;
+    
+    # Frontend static files
+    location / {
+        root /var/www/aura/frontend/dist;
+        try_files $uri $uri/ /index.html;
+        
+        # Cache static assets
+        location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+    }
+    
+    # Backend API
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    
+    # Health check
+    location /health {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+    }
+}
+```
+
+##### 6. SSL with Let's Encrypt
+```bash
+sudo apt install certbot python3-certbot-nginx
+sudo certbot --nginx -d your-domain.com
+```
+
+##### 7. Start Services
+```bash
+# Enable and start services
+sudo systemctl enable aura-backend
+sudo systemctl start aura-backend
+sudo systemctl enable nginx
+sudo systemctl start nginx
+
+# Check status
+sudo systemctl status aura-backend
+sudo systemctl status nginx
 ```
 
 ### 5. Verification

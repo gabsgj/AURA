@@ -2,15 +2,15 @@
 API routes for AURA application
 """
 from flask import Blueprint, request, jsonify, current_app
-from models import User, Wallet, Transaction, FraudLog, db
-from auth import token_required, generate_token
-from ml_models import fraud_detector
-from fx_service import fx_service
-from services.payments_service import payments_service
-from services.payment_routing_service import payment_routing_service
-from services.supabase_service import supabase_service
-from nlp_service import nlp_service
-from utils import sanitize_input
+from backend.models import User, Wallet, Transaction, FraudLog, db
+from backend.auth import token_required, generate_token
+from backend.ml_models import fraud_detector
+from backend.fx_service import fx_service
+from backend.services.payments_service import payments_service
+from backend.services.payment_routing_service import payment_routing_service
+from backend.services.supabase_service import supabase_service
+from backend.nlp_service import nlp_service
+from backend.utils import sanitize_input
 import logging
 from datetime import datetime
 import uuid

@@ -15,4 +15,6 @@ COPY backend /app
 ENV HOST=0.0.0.0
 ENV PORT=5000
 
-CMD ["gunicorn", "-w", "3", "-k", "gthread", "-b", "0.0.0.0:5000", "app:app"]
+EXPOSE 5000
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
