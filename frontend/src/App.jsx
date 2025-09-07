@@ -23,7 +23,7 @@ function App() {
     // Check if user was previously authenticated
     const savedToken = localStorage.getItem('aura_token');
     const savedUser = localStorage.getItem('aura_user');
-    const savedTheme = localStorage.getItem('aura_theme');
+    const savedTheme = localStorage.getItem('aura_theme') || 'dark';
     
     if (savedToken && savedUser) {
       setIsAuthenticated(true);
@@ -31,15 +31,19 @@ function App() {
         setUser(JSON.parse(savedUser));
       } catch (e) {
         console.error('Error parsing saved user:', e);
+        // Clear invalid data
+        localStorage.removeItem('aura_token');
+        localStorage.removeItem('aura_user');
       }
     }
     
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
+    setTheme(savedTheme);
+    
+    // Apply theme to document
+    document.documentElement.className = savedTheme;
 
     // Faster init for better UX
-    const t = setTimeout(() => setIsLoading(false), 500);
+    const t = setTimeout(() => setIsLoading(false), 300);
     return () => clearTimeout(t);
   }, []);
 

@@ -1,0 +1,32 @@
+[build]
+  base = "frontend"
+  publish = "frontend/dist"
+  command = "npm ci && npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  VITE_API_ORIGIN = "https://aura-backend-xxxx.onrender.com"
+  VITE_DEMO_MODE = "true"
+  VITE_SUPABASE_URL = ""
+  VITE_SUPABASE_ANON_KEY = ""
+  VITE_APP_NAME = "AURA"
+  VITE_APP_VERSION = "1.0.0"
+
+[context.deploy-preview.environment]
+  VITE_API_ORIGIN = "https://aura-backend-xxxx.onrender.com"
+  VITE_DEMO_MODE = "true"
+  VITE_SUPABASE_URL = ""
+  VITE_SUPABASE_ANON_KEY = ""
+
+[context.branch-deploy.environment]
+  VITE_API_ORIGIN = "https://aura-backend-xxxx.onrender.com"
+  VITE_DEMO_MODE = "true"
+  VITE_SUPABASE_URL = ""
+  VITE_SUPABASE_ANON_KEY = ""
