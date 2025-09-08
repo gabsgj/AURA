@@ -11,6 +11,7 @@ class Config:
     """Base configuration"""
     SECRET_KEY = os.getenv("SECRET_KEY")
     DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///aura.db")
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL", "sqlite:///aura.db")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
     # CORS settings
@@ -81,6 +82,7 @@ class TestingConfig(Config):
     DEBUG = True
     TESTING = True
     DATABASE_URL = "sqlite:///:memory:"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
 
 # Configuration mapping
 config = {

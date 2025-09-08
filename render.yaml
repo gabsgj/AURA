@@ -14,12 +14,20 @@ services:
         value: 0.0.0.0  
       - key: PORT
         value: 10000
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_URL
+        value: sqlite:///aura.db
       - key: ALLOWED_ORIGINS
         fromService:
           type: web
           name: aura-frontend
           property: host
-    healthCheckPath: /api/health
+      - key: SUPABASE_URL
+        value: https://your-project.supabase.co
+      - key: SUPABASE_KEY
+        value: your-supabase-anon-key
+    healthCheckPath: /health
 
   # Frontend Service (React/Vite)
   - type: web
