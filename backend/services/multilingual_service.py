@@ -7,15 +7,19 @@ import os
 import requests
 import logging
 from typing import Dict, List, Optional
-import google.generativeai as genai
 from datetime import datetime
+
+try:
+    import google.generativeai as genai
+except ImportError:
+    genai = None
 
 logger = logging.getLogger(__name__)
 
 class MultilingualService:
     def __init__(self):
         self.gemini_api_key = os.getenv('GEMINI_API_KEY')
-        if self.gemini_api_key:
+        if self.gemini_api_key and genai:
             genai.configure(api_key=self.gemini_api_key)
             self.model = genai.GenerativeModel('gemini-pro')
         else:
