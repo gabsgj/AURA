@@ -3,7 +3,7 @@ Smoke tests for AURA backend application
 """
 import os
 import pytest
-from backend.app import create_app
+from app import create_app
 
 def test_app_creation():
     """Test that the app can be created successfully"""
@@ -45,7 +45,7 @@ def test_database_initialization():
     app = create_app('testing')
     
     with app.app_context():
-        from backend.models import db, User, Wallet, Transaction
+        from models import db, User, Wallet, Transaction
         
         # Check that tables exist by attempting to query them
         try:

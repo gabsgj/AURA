@@ -5,8 +5,8 @@ from flask_limiter.util import get_remote_address
 import os
 import logging
 from pythonjsonlogger import jsonlogger
-from backend.config import config
-from backend.models import db
+from config import config
+from models import db
 
 def create_app(config_name=None):
     if config_name is None:
@@ -57,8 +57,8 @@ def create_app(config_name=None):
         root.setLevel(log_level)
 
     # Blueprints
-    from backend.api_routes import api_bp as core_bp
-    from backend.api_routes_ai import ai_bp as ai_bp
+    from api_routes import api_bp as core_bp
+    from api_routes_ai import ai_bp as ai_bp
     app.register_blueprint(core_bp, url_prefix="/api")
     app.register_blueprint(ai_bp, url_prefix="/api/ai")
 
@@ -83,5 +83,5 @@ def create_app(config_name=None):
 app = create_app()
 
 if __name__ == "__main__":
-    from backend.config import Config
+    from config import Config
     app.run(host=Config.HOST, port=Config.PORT)

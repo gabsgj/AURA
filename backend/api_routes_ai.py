@@ -10,10 +10,10 @@ from typing import Dict, Any
 from functools import wraps
 
 # Import AI services
-from backend.services.fx_prediction_service import fx_prediction_service
-from backend.services.payment_routing_service import payment_routing_service
-from backend.services.fraud_detection_service import fraud_detection_service
-from backend.services.multilingual_service import multilingual_service
+from services.fx_prediction_service import fx_prediction_service
+from services.payment_routing_service import payment_routing_service
+from services.fraud_detection_service import fraud_detection_service
+from services.multilingual_service import multilingual_service
 
 logger = logging.getLogger(__name__)
 
@@ -22,7 +22,7 @@ ai_bp = Blueprint('ai', __name__)
 # Rate limiting & auth imports
 try:  # pragma: no cover - defensive import
     from flask_limiter import Limiter
-    from backend.auth import token_required
+    from auth import token_required
 except Exception:  # pragma: no cover
     Limiter = None  # type: ignore
     def token_required(f):  # type: ignore
