@@ -83,10 +83,12 @@ cd AURA
 - **Voice Confirmations**: Spoken transaction summaries and confirmations
 - **Error Handling**: Voice-guided error resolution and suggestions
 - **Accessibility**: Voice-first design for users with limited digital literacy
+  
 <img width="1909" height="1810" alt="Image" src="https://github.com/user-attachments/assets/c4cd22b3-45e1-4a60-97d6-b5e7175b7c40" />
+<img width="1919" height="1079" alt="Image" src="https://github.com/user-attachments/assets/5c7ffd1c-0aaf-458a-8f5a-95fcf4c44d5b" />
 <img width="1909" height="1353" alt="Image" src="https://github.com/user-attachments/assets/f8cabe2f-d26a-4709-b1e8-9fe1d2591133" />
 <img width="1919" height="1079" alt="Image" src="https://github.com/user-attachments/assets/de4ada53-94b6-4e8d-9364-da9bbc595e1c" />
-<img width="1919" height="1079" alt="Image" src="https://github.com/user-attachments/assets/5c7ffd1c-0aaf-458a-8f5a-95fcf4c44d5b" />
+<img width="1909" height="2379" alt="Image" src="https://github.com/user-attachments/assets/a5e90808-08c6-416b-b7bc-b3fb38b07eb7" />
 
 ## 🛠️ Technology Stack
 
